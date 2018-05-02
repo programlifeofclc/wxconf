@@ -1,4 +1,4 @@
-package cn.wx.web.conf;
+package cn.wx.web.conf.servlet;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
