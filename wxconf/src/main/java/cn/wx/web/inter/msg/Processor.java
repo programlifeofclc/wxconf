@@ -4,5 +4,4 @@ public interface Processor{
 	
 	public String process(String postData);
 	
-	
 }
