@@ -8,7 +8,6 @@ import java.text.SimpleDateFormat;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -19,27 +18,25 @@ import org.xml.sax.InputSource;
 public class DomBean {
 
 	private static DocumentBuilderFactory dbf;
-	private static DocumentBuilder db;
+	
 	private static String dateFormat = "yyyyMMdd";
 
 	static {
-		try {
-			dbf = DocumentBuilderFactory.newInstance();
-			db = dbf.newDocumentBuilder();
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		}
+		dbf = DocumentBuilderFactory.newInstance();
 	}
 
 	public static <T> T xml2Bean(String data, Class<T> clazz) {
 		try {
 			StringReader sr = new StringReader(data);
+			DocumentBuilder db = dbf.newDocumentBuilder();
 			Document doc = db.parse(new InputSource(sr));
 			Element root = doc.getDocumentElement();
 			NodeList nodes = root.getChildNodes();
 			return nodes2Field(nodes, clazz);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			
 		}
 		return null;
 	}

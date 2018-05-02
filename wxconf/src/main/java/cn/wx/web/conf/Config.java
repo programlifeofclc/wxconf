@@ -1,14 +1,15 @@
 package cn.wx.web.conf;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.servlet.ServletInputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.qq.weixin.mp.aes.AesException;
 import com.qq.weixin.mp.aes.SHA1;
 import com.qq.weixin.mp.aes.WXBizMsgCrypt;
-
+import cn.wx.web.conf.msg.ProcessorEngine;
 import cn.wx.web.util.KV;
 import cn.wx.web.util.Tools;
 
@@ -93,15 +94,18 @@ public class Config extends BaseServlet {
 			if (KV.IS_ENCRYPT.equals("1")) {
 				postData = decryptPostData(req,postData);
 			}
-			
-			
-			
-			Tools.string2Bean(postData);
-			
+			//分辨消息类型 
+			Pattern pattern= Pattern.compile("<MsgType>.*?CDATA\\[(.*?)\\].*?</MsgType>");
+			Matcher matcher = pattern.matcher(postData);
+			if(matcher.find()){
+				String msgtype = matcher.group(1);
+				String retData = ProcessorEngine.launch(msgtype, postData);
+				resp.getWriter().println(retData);
+				resp.getWriter().close();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
 	
 }

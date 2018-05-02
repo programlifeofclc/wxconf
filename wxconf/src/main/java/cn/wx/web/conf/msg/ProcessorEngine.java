@@ -4,6 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 import cn.wx.web.inter.msg.Processor;
 
+/**
+ * 处理器引擎
+ * @author Administrator
+ *
+ */
 public class ProcessorEngine {
 
 	
@@ -16,7 +21,13 @@ public class ProcessorEngine {
 		}
 	}
 	
-	
+	/**
+	 * 根据类型找到对应消息处理器
+	 * @param msgtype
+	 * @param postData
+	 * @return
+	 * @throws Exception
+	 */
 	public static String launch(String msgtype ,String postData) throws Exception{
 		Processor p = map.get(msgtype);
 		if(p != null){
