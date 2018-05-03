@@ -20,7 +20,7 @@
   
 
   	<dependencies>
-		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient-->
+		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient gg-->
 		<dependency>
 		    <groupId>org.apache.httpcomponents</groupId>
 		    <artifactId>httpclient</artifactId>
