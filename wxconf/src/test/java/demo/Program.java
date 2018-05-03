@@ -19,7 +19,7 @@ public class Program {
 
 		//
 		// 第三方回复公众平台
-		//
+		//9_0rAMiQH_THIvcgeu2tSa-rhiqV8DiM28TkCD3sAzSylSueaBMQrJuMlDGV3lOq7B5TyrN-NFFzlmpjPUJ6vOOQO6HgL0fz_n40HgGAVyU0Hmp4OR3aIXw1o02EFODUVLD3xbmiRqpLyyf1eiGYJeAHAASD
 
 		// 需要加密的明文
 		String encodingAesKey = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFG";

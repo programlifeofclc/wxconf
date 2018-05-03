@@ -67,6 +67,7 @@ public class DomBean {
 					}
 				} catch (Exception e) {
 					System.err.println("非必须异常1:" + e.getMessage());
+					e.printStackTrace();
 				}
 			}
 			return bean;
