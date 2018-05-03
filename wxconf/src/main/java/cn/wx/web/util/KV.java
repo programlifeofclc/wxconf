@@ -23,8 +23,6 @@ public class KV{
 
 	public static String IS_ENCRYPT;
 
-	public static String ACCESS_TOKEN_URL;
-
 	public static String TOKEN;
 
 	public static String ENCODING_AES_KEY;
@@ -32,11 +30,23 @@ public class KV{
 	public static String APP_ID;
 
 	public static String APP_SECRET;
+
+	public static String CHARSET;
+	
+	public static String ACCESS_TOKEN_URL;
 	
 	public static String MENU_CREATE_URL;
-	
-	public static String CHARSET;
 
+	public static String PAGE_CODE_URL;
+	
+	public static String PAGE_REDIRECT_URI;
+	
+	public static String PAGE_TOKEN_URL;
+	
+	public static String PAGE_REF_TOKEN_URL;
+	
+	public static String PAGE_USER_INFO_URL;
+	
 	
 	private static String key(String key) {
 		key = rb.getString(key);

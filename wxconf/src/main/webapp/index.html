@@ -10,20 +10,25 @@
 </head>
 
 <body>
-<!-- sdfgadf -->
-<!-- 	asdf -->
-<!-- 	<a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx5e45d21d2c0e4bb1&redirect_uri=http%3a%2f%2fsanfangzhifu.95081.cn%2fwxconf%2findex.html&response_type=code&scope=snsapi_userinfo&state=456#wechat_redirect">获取</a> -->
-<!-- 	4s -->
-<!-- 	<script type="text/javascript"> -->
 
-	
-	
-<!-- 	</script> -->
+<a href="/wxconf/pageCode">获取code</a>
+
 
 <script type="text/javascript">
 
-alert(4);
+alert("openid22");
 alert(location.search)
+
+
+</script>
+
+<script type="text/javascript" src="/wxconf/js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="/wxconf/js/jquery.cookie.js"></script>
+<script type="text/javascript">
+
+alert($.cookie('openid'))
+alert($.cookie('userinfo'))
+
 </script>
 </body>
 </html>
