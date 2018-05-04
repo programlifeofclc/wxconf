@@ -38,10 +38,7 @@ public class AccessToken {
 	}
 
 	private static void goWxGetToken() {
-		String url = KV.ACCESS_TOKEN_URL;
-		String appid = KV.APP_ID;
-		String secret = KV.APP_SECRET;
-		String access_json = HttpClient4.doGet(url + "?grant_type=client_credential&appid=" + appid + "&secret=" + secret);
+		String access_json = HttpClient4.doGet(KV.ACCESS_TOKEN_URL + "?grant_type=client_credential&appid=" + KV.APP_ID + "&secret=" + KV.APP_SECRET);
 		JSONObject json = JSONObject.parseObject(access_json);
 		if (!json.containsKey("errcode")) {
 			access_token = json.getString("access_token");

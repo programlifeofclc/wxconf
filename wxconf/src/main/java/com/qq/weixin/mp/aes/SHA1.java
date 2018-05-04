@@ -11,13 +11,17 @@ package com.qq.weixin.mp.aes;
 import java.security.MessageDigest;
 import java.util.Arrays;
 
+import com.sun.istack.internal.logging.Logger;
+
 /**
  * SHA1 class
  *
  * 计算公众平台的消息签名接口.
  */
 public class SHA1 {
-
+	
+	public static Logger logger = Logger.getLogger(SHA1.class);
+	
 	/**
 	 * 用SHA1算法生成安全签名
 	 * 
@@ -37,6 +41,45 @@ public class SHA1 {
 				sb.append(s);
 			}
 			String str = sb.toString();
+			logger.info("sha1 url:" + str);
+			// SHA1签名生成
+			MessageDigest md = MessageDigest.getInstance("SHA-1");
+			md.update(str.getBytes());
+			byte[] digest = md.digest();
+			StringBuffer hexstr = new StringBuffer();
+			String shaHex = "";
+			for (int i = 0; i < digest.length; i++) {
+				shaHex = Integer.toHexString(digest[i] & 0xFF);
+				if (shaHex.length() < 2) {
+					hexstr.append(0);
+				}
+				hexstr.append(shaHex);
+			}
+			return hexstr.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new AesException(AesException.ComputeSignatureError);
+		}
+	}
+	
+	
+	/**
+	 * 各个参数以&分割的签证
+	 * @param arg
+	 * @return
+	 * @throws AesException
+	 */
+	public static String getUrlSHA1(String... arg) throws AesException {
+		try {
+			StringBuffer sb = new StringBuffer();
+			// 字符串排序
+			Arrays.sort(arg);
+			for (String s : arg) {
+				sb.append(s + "&");
+			}
+			sb.deleteCharAt(sb.length() - 1);
+			String str = sb.toString();
+			logger.info("sha1 url:" + str);
 			// SHA1签名生成
 			MessageDigest md = MessageDigest.getInstance("SHA-1");
 			md.update(str.getBytes());
@@ -57,4 +100,6 @@ public class SHA1 {
 			throw new AesException(AesException.ComputeSignatureError);
 		}
 	}
+	
+	
 }

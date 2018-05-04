@@ -47,6 +47,7 @@ public class KV{
 	
 	public static String PAGE_USER_INFO_URL;
 	
+	public static String JS_TICKET_TOKEN_RRL;
 	
 	private static String key(String key) {
 		key = rb.getString(key);

@@ -13,7 +13,6 @@
 </head>
 
 <body>
-
 	<div id="app">
 	    <p>{{ openid }}</p>
 	    <p>{{ userinfo }}</p>
@@ -23,12 +22,19 @@
 <script type="text/javascript" src="/wxconf/js/jquery-2.1.4.js"></script>
 <script type="text/javascript" src="/wxconf/js/jquery-weui.min.js"></script>
 <script type="text/javascript" src="/wxconf/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/wxconf/js/wx_clc.js"></script>
 <script type="text/javascript">
+
+
+
+
+
+
 
 	//这是我们的Model
 	var exampleData = {
 			openid : $.cookie('openid'),
-			userinfo :$.cookie('userinfo')
+			userinfo : $.cookie('userinfo')
 	}
 	// 创建一个 Vue 实例或 "ViewModel"
 	// 它连接 View 与 Model
@@ -36,9 +42,6 @@
 	    el: '#app',
 	    data: exampleData
 	})
-
-	
-	
 	
 </script>
 </body>
