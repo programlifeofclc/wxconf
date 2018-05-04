@@ -6,29 +6,40 @@
     <meta content="yes" name="apple-touch-fullscreen">
     <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
     <meta content="telephone=no,email=no" name="format-detection">
-    <title>管家帮2</title>
+    <link rel="stylesheet" href="/wxconf/css/weui.min.css">
+	<link rel="stylesheet" href="/wxconf/css/jquery-weui.min.css">
+	<script type="text/javascript" src="/wxconf/js/vue.min.js"></script>
+    <title>管家帮</title>
 </head>
 
 <body>
 
-<a href="/wxconf/pageCode">获取code</a>
+	<div id="app">
+	    <p>{{ openid }}</p>
+	    <p>{{ userinfo }}</p>
+	</div>
 
-
-<script type="text/javascript">
-
-alert("openid22");
-alert(location.search)
-
-
-</script>
-
-<script type="text/javascript" src="/wxconf/js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script type="text/javascript" src="/wxconf/js/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="/wxconf/js/jquery-weui.min.js"></script>
 <script type="text/javascript" src="/wxconf/js/jquery.cookie.js"></script>
 <script type="text/javascript">
 
-alert($.cookie('openid'))
-alert($.cookie('userinfo'))
+	//这是我们的Model
+	var exampleData = {
+			openid : $.cookie('openid'),
+			userinfo :$.cookie('userinfo')
+	}
+	// 创建一个 Vue 实例或 "ViewModel"
+	// 它连接 View 与 Model
+	new Vue({
+	    el: '#app',
+	    data: exampleData
+	})
 
+	
+	
+	
 </script>
 </body>
 </html>

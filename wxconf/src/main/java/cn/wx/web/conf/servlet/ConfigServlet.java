@@ -21,7 +21,7 @@ import cn.wx.web.util.Tools;
  */
 
 @WebServlet(urlPatterns = { "/config" })
-public class Config extends BaseServlet {
+public class ConfigServlet extends BaseServlet {
 
 	private static final long serialVersionUID = 1L;
 

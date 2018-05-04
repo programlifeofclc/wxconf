@@ -45,7 +45,7 @@ public class AccessToken {
 		JSONObject json = JSONObject.parseObject(access_json);
 		if (!json.containsKey("errcode")) {
 			access_token = json.getString("access_token");
-			expires = json.getLong("expires_in") * 1000;
+			expires = json.getLong("expires_in") * 1000 - 600 * 1000 ;
 			startTime = (new Date()).getTime();
 		} else {
 			System.out.println("微信取token错误：" + json);

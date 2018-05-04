@@ -26,6 +26,10 @@ import org.apache.http.util.EntityUtils;
 public class HttpClient4 {
 
 	public static String doGet(String url) {
+		return doGet(url , KV.CHARSET);
+	}
+	
+	public static String doGet(String url,String charset) {
 		CloseableHttpClient httpClient = null;
 		CloseableHttpResponse response = null;
 		String result = "";
@@ -34,6 +38,7 @@ public class HttpClient4 {
 			httpClient = HttpClients.createDefault();
 			// 创建httpGet远程连接实例
 			HttpGet httpGet = new HttpGet(url);
+			httpGet.addHeader("Content-Type", "text/html;charset=" + charset);
 			// 设置请求头信息，鉴权
 			// httpGet.setHeader("Authorization", "Bearer
 			// da3efcbf-0845-4fe3-8aba-ee040be542c0");
@@ -50,7 +55,7 @@ public class HttpClient4 {
 			// 通过返回对象获取返回数据
 			HttpEntity entity = response.getEntity();
 			// 通过EntityUtils中的toString方法将结果转换为字符串
-			result = EntityUtils.toString(entity);
+			result = EntityUtils.toString(entity,charset);
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -76,7 +81,7 @@ public class HttpClient4 {
 	}
 
 	public static String doPost(String url, Map<String, Object> paramMap) {
-		return doPost(url, paramMap,"UTF-8");
+		return doPost(url, paramMap,KV.CHARSET);
 	}
 	
 	public static String doPost(String url, Map<String, Object> paramMap, String charset) {
@@ -119,7 +124,7 @@ public class HttpClient4 {
 			httpResponse = httpClient.execute(httpPost);
 			// 从响应对象中获取响应内容
 			HttpEntity entity = httpResponse.getEntity();
-			result = EntityUtils.toString(entity);
+			result = EntityUtils.toString(entity,charset);
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

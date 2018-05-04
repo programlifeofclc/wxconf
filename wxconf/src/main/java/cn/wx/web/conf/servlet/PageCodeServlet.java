@@ -14,9 +14,9 @@ import org.apache.log4j.Logger;
 import cn.wx.web.util.KV;
 
 @WebServlet(urlPatterns={"/pageCode"})
-public class PageCode extends BaseServlet{
+public class PageCodeServlet extends BaseServlet{
 	
-	private static Logger logger = LogManager.getLogger(PageCode.class);
+	private static Logger logger = LogManager.getLogger(PageCodeServlet.class);
 	
 	private static final long serialVersionUID = 1L;
 
@@ -32,6 +32,5 @@ public class PageCode extends BaseServlet{
 		resp.sendRedirect(url);
 		logger.info("微信页面code申请完毕等待回调");
 	}
-	
 
 }
