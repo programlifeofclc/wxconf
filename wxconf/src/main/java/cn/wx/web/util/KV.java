@@ -49,6 +49,10 @@ public class KV{
 	
 	public static String JS_TICKET_TOKEN_RRL;
 	
+	public static String MCH_ID;
+	
+	public static String NOTIFY_URL;
+	
 	private static String key(String key) {
 		key = rb.getString(key);
 		if (key == null || key.trim().equals("")) {

@@ -159,21 +159,6 @@ try{
 
 	}
 	
-
-	var clc = new wx_clc({
-		debug : true
-	});
-	clc.on(clc.apik.onMenuShareTimeline, {
-		title : "管家帮精选欢迎你的到来",
-		trigger : function(res) { },
-		success : function(res) { },
-		cancel : function(res) { },
-		fail : function(res) { }
-	})
-	clc.config("/wxconf/jsTicket");
-    
-    
-    
     
 }catch (e) {
 	alert("er:" + e);
