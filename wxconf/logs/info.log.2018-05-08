@@ -1,0 +1,9 @@
+2018-05-08 23:44:01  [ main:0 ] - [ INFO ]  classname:cn.wx.web.conf.compon.UniqueCache
+2018-05-08 23:44:01  [ main:3 ] - [ INFO ]  classname:cn.wx.web.conf.compon.UniqueCache
+2018-05-08 23:45:10  [ main:0 ] - [ INFO ]  classname:cn.wx.web.conf.compon.UniqueCache
+2018-05-08 23:45:10  [ main:3 ] - [ INFO ]  classname:cn.wx.web.conf.compon.UniqueCache
+2018-05-08 23:45:50  [ main:0 ] - [ INFO ]  classname:java.lang.Long
+2018-05-08 23:45:50  [ main:2 ] - [ INFO ]  classname:java.lang.Long
+2018-05-08 23:46:43  [ main:0 ] - [ INFO ]  classname:java.lang.Long
+2018-05-08 23:46:43  [ main:2 ] - [ INFO ]  classname:java.lang.Long
+2018-05-08 23:46:43  [ main:2 ] - [ INFO ]  classname:int

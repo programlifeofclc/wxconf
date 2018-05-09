@@ -53,6 +53,11 @@ public class KV{
 	
 	public static String NOTIFY_URL;
 	
+	public static String SECRET_KEY;
+	
+	public static String UNIFIED_ORDER_URL;
+	
+	
 	private static String key(String key) {
 		key = rb.getString(key);
 		if (key == null || key.trim().equals("")) {

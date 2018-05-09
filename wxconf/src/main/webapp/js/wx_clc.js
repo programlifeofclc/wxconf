@@ -1,5 +1,4 @@
 try{
-	alert(new Date().getTime());
 	/**
 	 * 构造函数
 	 */
@@ -12,7 +11,6 @@ try{
 		this.ops = $.extend(this.ops, opstion || {});
 	}
 
-	
 	/**
 	 * 对象扩展
 	 */
@@ -158,7 +156,6 @@ try{
 		}
 
 	}
-	
     
 }catch (e) {
 	alert("er:" + e);

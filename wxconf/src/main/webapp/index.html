@@ -9,21 +9,30 @@
     <title>管家帮</title>
 </head>
 
-<body style="height: 100%">
-		
-	    <p>rwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww</p>
-	    <p>{{ userinfo }}</p>
-	    
+<body style="height: 100%" >
+	<header class='demos-header'>
+      <h1 class="demos-title">管家帮</h1>
+    </header>
+	
+	<div class="weui-grids">
+      <a href="buttons.html" class="weui-grid js_grid">
+        <div class="weui-grid__icon">
+          <img src="images/icon_nav_button.png" alt="">
+        </div>
+        <p id="app" class="weui-grid__label"  >
+          Button77{{ openid }}
+        </p>
+      </a>
+    </div>
+	<a href="/wxconf/pay">去支付</a>
 
-<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
-<script type="text/javascript" src="/wxconf/js/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="/wxconf/js/jweixin-1.2.0.js"></script>
+<script type="text/javascript" src="/wxconf/js/jquery-1.11.0.js?123"></script>
 <script type="text/javascript" src="/wxconf/js/jquery-weui.min.js"></script>
 <script type="text/javascript" src="/wxconf/js/jquery.cookie.js"></script>
-<script type="text/javascript" src="/wxconf/js/wx_clc.js"></script>
+<script type="text/javascript" src="/wxconf/js/wx_clc.js?3445"></script>
 <script type="text/javascript">
 
-
-	//这是我们的Model
 	var exampleData = {
 			openid : $.cookie('openid'),
 			userinfo : $.cookie('userinfo')
@@ -34,7 +43,6 @@
 	    el: '#app',
 	    data: exampleData
 	})
-	
 	
 	var clc = new wx_clc({
 		debug : true

@@ -13,7 +13,7 @@ import org.apache.log4j.Logger;
 
 import com.alibaba.fastjson.JSONObject;
 
-import cn.wx.web.conf.compon.CodeCache;
+import cn.wx.web.conf.compon.UniqueCache;
 import cn.wx.web.conf.compon.PageAccessToken;
 import cn.wx.web.conf.compon.UserInfoCache;
 import cn.wx.web.util.ReturnBean;
@@ -31,7 +31,7 @@ public class PageTokenServlet extends BaseServlet{
 		String code = getPar(req, "code");
 		String state = getPar(req, "state");
 		logger.info("code:" + code + "state:" + state);
-		if(CodeCache.addCode(code)){
+		if(UniqueCache.VerifyUnique(PageTokenServlet.class, code)){
 			String openidMd5 = PageAccessToken.getPageToken(code);
 			logger.info("openidMd5:" + openidMd5);
 			if(openidMd5 != null){

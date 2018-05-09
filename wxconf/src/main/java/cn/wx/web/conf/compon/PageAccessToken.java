@@ -47,16 +47,24 @@ public class PageAccessToken {
 	}
 	
 	private synchronized static String addEntry(String access_token, String refresh_token, long expires, String openid) {
-		logger.error("pagetoken:----------------------------");
 		Entry entry = new Entry(access_token, refresh_token, expires, openid);
 		String openidMd5 = Tools.getMd5(openid);
 		map.put(openidMd5, entry);
 		return openidMd5;
 	}
 	
-	public static JSONObject getAccToken(String openid) {
-		if(haveAccToken(openid)){
-			Entry entry = map.get(openid);
+	public static String getOpenIdByIdMd5(String openIdMd5) {
+		if(haveAccToken(openIdMd5)){
+			Entry entry = map.get(openIdMd5);
+			logger.info("openid:" + entry.getOpenid());
+			return entry.getOpenid();
+		}
+		return null;
+	}
+	
+	public static JSONObject getAccToken(String openIdMd5) {
+		if(haveAccToken(openIdMd5)){
+			Entry entry = map.get(openIdMd5);
 			entry.refreshAccessToken();
 			JSONObject jo = (JSONObject)JSONObject.toJSON(entry);
 			logger.info("acctoken:" + jo);

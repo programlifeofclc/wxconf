@@ -5,7 +5,6 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -16,8 +15,6 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.ServletInputStream;
 
-import com.github.wxpay.sdk.WXPayConstants;
-import com.github.wxpay.sdk.WXPayConstants.SignType;
 import com.sun.istack.internal.logging.Logger;
 
 import sun.misc.BASE64Encoder;
@@ -132,7 +129,7 @@ public class Tools {
     	Collections.sort(list);
     	for(String key : list){
     		String val = map.get(key);
-    		if (val.trim().length() > 0){
+    		if (val != null && val.trim().length() > 0){
     			sb.append(key).append("=").append(val).append("&");
     		}
     	}

@@ -80,11 +80,11 @@ public class HttpClient4 {
 		return result;
 	}
 
-	public static String doPost(String url, Map<String, Object> paramMap) {
+	public static String doPost(String url, Map<String, String> paramMap) {
 		return doPost(url, paramMap,KV.CHARSET);
 	}
 	
-	public static String doPost(String url, Map<String, Object> paramMap, String charset) {
+	public static String doPost(String url, Map<String, String> paramMap, String charset) {
 		CloseableHttpClient httpClient = null;
 		CloseableHttpResponse httpResponse = null;
 		String result = "";
@@ -105,11 +105,11 @@ public class HttpClient4 {
 		if (null != paramMap && paramMap.size() > 0) {
 			List<NameValuePair> nvps = new ArrayList<NameValuePair>();
 			// 通过map集成entrySet方法获取entity
-			Set<Entry<String, Object>> entrySet = paramMap.entrySet();
+			Set<Entry<String, String>> entrySet = paramMap.entrySet();
 			// 循环遍历，获取迭代器
-			Iterator<Entry<String, Object>> iterator = entrySet.iterator();
+			Iterator<Entry<String, String>> iterator = entrySet.iterator();
 			while (iterator.hasNext()) {
-				Entry<String, Object> mapEntry = iterator.next();
+				Entry<String, String> mapEntry = iterator.next();
 				nvps.add(new BasicNameValuePair(mapEntry.getKey(), mapEntry.getValue().toString()));
 			}
 			// 为httpPost设置封装好的请求参数
@@ -178,7 +178,7 @@ public class HttpClient4 {
 			httpResponse = httpClient.execute(httpPost);
 			// 从响应对象中获取响应内容
 			HttpEntity entity = httpResponse.getEntity();
-			result = EntityUtils.toString(entity);
+			result = EntityUtils.toString(entity,charset);
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
