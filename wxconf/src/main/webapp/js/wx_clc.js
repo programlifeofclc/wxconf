@@ -1,4 +1,6 @@
 try{
+	
+	alert(4444444)
 	/**
 	 * 构造函数
 	 */
@@ -6,7 +8,7 @@ try{
 		this.ops = {
 			debug : false,
 			url : window.location.href.split("#")[0],
-			jsApiList:[]
+			jsApiList:["chooseWXPay"]
 		};
 		this.ops = $.extend(this.ops, opstion || {});
 	}
@@ -112,6 +114,7 @@ try{
 			this.alert("jsApiList-size:" + apr.length);
 		},
 		config : function(currUrl) {
+			alert(currUrl);
 			var thiz = this;
 			$.ajax({
 				type : "POST",
@@ -124,6 +127,7 @@ try{
 				success : function(json) {
 					thiz.alert(json);
 					if (json.msgcode == "1") {
+						alert(thiz.ops.jsApiList + "555");
 						wx.config({
 							debug : thiz.ops.debug, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
 							appId : json.data.appId, // 必填，公众号的唯一标识

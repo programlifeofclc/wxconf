@@ -9,12 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import com.alibaba.fastjson.JSON;
+
 import cn.wx.web.conf.compon.PageAccessToken;
 import cn.wx.web.conf.compon.UniqueCache;
-import cn.wx.web.conf.compon.pay.WxJsPay;
+import cn.wx.web.conf.compon.pay.WxScanPay;
+import cn.wx.web.util.CodeImg;
 import cn.wx.web.util.CookieUtils;
 import cn.wx.web.util.KV;
-import cn.wx.web.util.ReturnBean;
 
 /**
  * 微信配置类 事件处理类
@@ -23,10 +25,10 @@ import cn.wx.web.util.ReturnBean;
  * @date 2018/04/24
  */
 
-@WebServlet(urlPatterns = { "/pay" })
-public class PayWxServlet extends BaseServlet {
+@WebServlet(urlPatterns = { "/sanpay" })
+public class ScanPayWxServlet extends BaseServlet {
 
-	private static Logger logger = Logger.getLogger(PayWxServlet.class);
+	private static Logger logger = Logger.getLogger(ScanPayWxServlet.class);
 	
 	private static final long serialVersionUID = 1L;
 
@@ -38,7 +40,7 @@ public class PayWxServlet extends BaseServlet {
 		try {
 			String openid = CookieUtils.getCookieValue(req, "openid");
 			logger.info("unorder :" + openid);
-			if(!UniqueCache.VerifyUnique(PayWxServlet.class, openid ,5000L)){
+			if(!UniqueCache.VerifyUnique(ScanPayWxServlet.class, openid ,5000L)){
 				return;
 			}
 			String out_trade_no = new Date().getTime() + "";
@@ -46,14 +48,11 @@ public class PayWxServlet extends BaseServlet {
 			String body = "管家帮好酒";
 			openid =  PageAccessToken.getOpenIdByIdMd5(openid);
 			String  spbill_create_ip = getIp(req);
-			WxJsPay wjp = new WxJsPay();
+			WxScanPay wjp = new WxScanPay();
 			Map<String, String> map = wjp.unifiedOrder(openid, body, out_trade_no, total_fee, spbill_create_ip, KV.NOTIFY_URL); 
-			map = wjp.order2Ajax(map);
-			ReturnBean rb = new ReturnBean();
-			rb.setData(map);
-			rb.setMsgcode("1");
-			logger.info("下单加签数据:" + rb.toJson());
-			out(resp, rb.toJson());
+			logger.info("扫码下单下单加签数据:" + JSON.toJSONString(map));
+			String http = map.get("code_url");
+			CodeImg.getImgToStream(http , 300, 300, "png", resp.getOutputStream());
 		} catch (Exception e) {
 			out(resp, "false");
 			e.printStackTrace();

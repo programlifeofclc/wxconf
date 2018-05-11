@@ -111,7 +111,7 @@ public class Tools {
 			int number = random.nextInt(base.length());
 			sb.append(base.charAt(number));
 		}
-		return sb.toString();
+		return sb.toString().toUpperCase();
 	}
 	
 	
@@ -135,11 +135,11 @@ public class Tools {
     	}
         sb.append("key=").append(secretKey);
         System.out.println(sb);
-        if(map.get("sign_type").equalsIgnoreCase("HMAC-SHA256")){
+        if(KV.SIGN_TYPE.equalsIgnoreCase("HMAC-SHA256")){
         	return Tools.WX_HMACSHA256(sb.toString(), secretKey);
         }else{
         	return Tools.WX_MD5(sb.toString());
         }
     }
-	
+    
 }

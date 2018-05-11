@@ -57,6 +57,7 @@ public class KV{
 	
 	public static String UNIFIED_ORDER_URL;
 	
+	public static String SIGN_TYPE;
 	
 	private static String key(String key) {
 		key = rb.getString(key);

@@ -15,68 +15,100 @@
     </header>
 	
 	<div class="weui-grids">
-      <a href="buttons.html" class="weui-grid js_grid">
+      <a href="javascript:void(0)"  onclick="gopay()" class="weui-grid js_grid">
         <div class="weui-grid__icon">
           <img src="images/icon_nav_button.png" alt="">
         </div>
-        <p id="app" class="weui-grid__label"  >
-          Button77{{ openid }}
+        <p id="app" class="weui-grid__label" >
+          	支付{{ openid }}
         </p>
       </a>
     </div>
-	<a href="/wxconf/pay">去支付</a>
+	 
+	 <img alt="" src="/wxconf/sanpay" >
 
 <script type="text/javascript" src="/wxconf/js/jweixin-1.2.0.js"></script>
 <script type="text/javascript" src="/wxconf/js/jquery-1.11.0.js?123"></script>
 <script type="text/javascript" src="/wxconf/js/jquery-weui.min.js"></script>
 <script type="text/javascript" src="/wxconf/js/jquery.cookie.js"></script>
-<script type="text/javascript" src="/wxconf/js/wx_clc.js?3445"></script>
+<script type="text/javascript" src="/wxconf/js/wx_clc.js"></script>
 <script type="text/javascript">
 
-	var exampleData = {
-			openid : $.cookie('openid'),
-			userinfo : $.cookie('userinfo')
-	}
-	// 创建一个 Vue 实例或 "ViewModel"
-	// 它连接 View 与 Model
-	new Vue({
-	    el: '#app',
-	    data: exampleData
-	})
+
+// 	var exampleData = {
+// 			openid : $.cookie('openid'),
+// 			userinfo : $.cookie('userinfo')
+// 	}
+// 	// 创建一个 Vue 实例或 "ViewModel"
+// 	// 它连接 View 与 Model
+// 	new Vue({
+// 	    el: '#app',
+// 	    data: exampleData
+// 	})
 	
-	var clc = new wx_clc({
-		debug : true
-	});
-	clc.on(clc.apik.onMenuShareTimeline, {
-		title : "管家帮精选欢迎你的到来",
-		trigger : function(res) {},
-		success : function(res) {},
-		cancel : function(res) {},
-		fail : function(res) {}
-	});
-	
-	clc.config("/wxconf/jsTicket");
+// 	var clc = new wx_clc({
+// 		debug : true
+// 	});
+
+// 	clc.config("/wxconf/jsTicket");
     
-	wx.openAddress({
-		success: function (res) {
-		var userName = res.userName; // 收货人姓名
-		var postalCode = res.postalCode; // 邮编
-		var provinceName = res.provinceName; // 国标收货地址第一级地址（省）
-		var cityName = res.cityName; // 国标收货地址第二级地址（市）
-		var countryName = res.countryName; // 国标收货地址第三级地址（国家）
-		var detailInfo = res.detailInfo; // 详细收货地址信息
-		var nationalCode = res.nationalCode; // 收货地址国家码
-		var telNumber = res.telNumber; // 收货人手机号码
-		}
+	
+	
+ 
+// 	function gopay(){
+// 		$.ajax({
+// 			type:"post",
+// 			url:"/wxconf/pay",
+// 			data:{},
+// 			dataType:"json",
+// 			success:function(data){
+// 				alert(78);
+// 				alert(data.data.timeStamp);
+// 				alert(data.data.nonceStr);
+// 				alert(data.data.package);
+// 				alert(data.data.signType);
+// 				alert(data.data.paySign);
+				
+// 				wx.chooseWXPay({
+// 					timestamp : data.data.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+// 					nonceStr : data.data.nonceStr, // 支付签名随机串，不长于 32 位
+// 					package : data.data.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=\*\*\*）
+// 					signType : data.data.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+// 					paySign : data.data.paySign, // 支付签名
+// 					success : function(res) {
+// 						alert(res.err_msg);
+// 					}
+// 				});
+				
+// 			}
+// 		});
+// 	}
+	
+// 	 wx.error(function(res){
+//          alert(res.err_msg);
+//          return false;
+//      });
+	
+	
+	
+	$.ajax({
+			type:"post",
+			url:"/wxconf/sanpay",
+			data:{},
+			dataType:"json",
+			success:function(data){
+				alert(232378);
+				 alert(data)
+			}
 		});
 	
 	
 	
 	
 	
-	
-	
-	
+	   
+         
+       
 </script>
 </body>
 </html>

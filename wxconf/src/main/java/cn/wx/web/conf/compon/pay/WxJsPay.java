@@ -17,18 +17,7 @@ public class WxJsPay {
 	
 	private static Logger logger = Logger.getLogger(WxJsPay.class);
 	
-	public static enum SIGN_TYPE {MD5 , SHA256};
-	
-	public SIGN_TYPE sign_type;
-	
-	public WxJsPay() {
-		new WxJsPay(SIGN_TYPE.MD5);
-	}
-	
-	
-	public WxJsPay(SIGN_TYPE sign_type) {
-		this.sign_type = sign_type;
-	}
+	public WxJsPay() { }
 	
 	
 	/**
@@ -53,7 +42,7 @@ public class WxJsPay {
 			map.put("total_fee", total_fee + "");
 			map.put("spbill_create_ip", spbill_create_ip);
 			map.put("notify_url", notify_url);
-			if (sign_type == SIGN_TYPE.SHA256) {
+			if (KV.SIGN_TYPE.equalsIgnoreCase("HMAC-SHA256")) {
 				map.put("sign_type", "HMAC-SHA256");
 			} else {
 				map.put("sign_type", "MD5");
@@ -70,13 +59,34 @@ public class WxJsPay {
 			return null;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
+	/**
+	 * 统一下单数据转成ajax
+	 * @param map
+	 * @return
+	 */
+	public Map<String, String> order2Ajax(Map<String,String> map) {
+		try {
+			//开始把微信支付所需要的参数，给返回到页面，以便用于支付
+			String prepay_id = (String) map.get("prepay_id");//微信生成的预支付回话标识，用于后续接口调用中使用，该值有效期为2小时
+			Map<String,String> pmap = new HashMap<>();
+			pmap.put("appId", KV.APP_ID);
+			pmap.put("timeStamp", ((System.currentTimeMillis())/1000)+"");
+			pmap.put("nonceStr", Tools.randomStr(32));
+			pmap.put("package", "prepay_id="+prepay_id);
+			if (KV.SIGN_TYPE.equalsIgnoreCase("HMAC-SHA256")) {
+				pmap.put("signType", "HMAC-SHA256");
+			} else {
+				pmap.put("signType", "MD5");
+			}
+			String sign = Tools.getSign(pmap, KV.SECRET_KEY);
+			pmap.put("paySign", sign);
+			logger.info("转换前端 加签名 ajax" + XmlDom.mapToXml(pmap));
+			return pmap;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			return null;
+	}
 	
 	
 	
