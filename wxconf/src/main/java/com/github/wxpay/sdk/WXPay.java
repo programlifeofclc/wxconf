@@ -49,7 +49,8 @@ public class WXPay {
         this.wxPayRequest = new WXPayRequest(config);
     }
 
-    private void checkWXPayConfig() throws Exception {
+    @SuppressWarnings("unused")
+	private void checkWXPayConfig() throws Exception {
         if (this.config == null) {
             throw new Exception("config is null");
         }
