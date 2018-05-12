@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -16,7 +17,9 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 public class DomBean {
-
+	
+	private static Logger logger = Logger.getLogger(DomBean.class);
+	
 	private static DocumentBuilderFactory dbf;
 	
 	private static String dateFormat = "yyyyMMdd";
@@ -34,7 +37,11 @@ public class DomBean {
 			NodeList nodes = root.getChildNodes();
 			return nodes2Field(nodes, clazz);
 		} catch (Exception e) {
-			e.printStackTrace();
+			if(e instanceof NoSuchFieldException) {
+				logger.info("一般错误：" + e.getMessage());
+			}else{
+				e.printStackTrace();
+			}
 		}finally {
 			
 		}
@@ -66,8 +73,11 @@ public class DomBean {
 						}
 					}
 				} catch (Exception e) {
-					System.err.println("非必须异常1:" + e.getMessage());
-					e.printStackTrace();
+					if(e instanceof NoSuchFieldException) {
+						logger.info("一般错误：" + e.getMessage());
+					}else{
+						e.printStackTrace();
+					}
 				}
 			}
 			return bean;

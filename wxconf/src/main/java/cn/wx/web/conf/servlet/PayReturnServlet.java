@@ -36,7 +36,7 @@ public class PayReturnServlet extends BaseServlet {
 			
 			ServletInputStream in = req.getInputStream();
 			String postData = Tools.stream2String(in);
-			logger.info(postData);
+			logger.info("支付回调:" + postData);
 			Map<String,String> map = new HashMap<>();
 			map.put("return_code", "SUCCESS");
 			map.put("return_msg", "OK");
