@@ -16,7 +16,7 @@
 			<url>http://192.168.1.224:8081/nexus/content/repositories/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
-  
+  	<!--ni-->
 
   	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient gg-->
